@@ -1,0 +1,224 @@
+{
+    "1": [
+        {
+            "nome": "a",
+            "jogos": 1,
+            "vitorias": 1,
+            "derrotas": 0,
+            "games_pro": 6,
+            "games_contra": 2,
+            "pontos": 3
+        },
+        {
+            "nome": "b",
+            "jogos": 1,
+            "vitorias": 1,
+            "derrotas": 0,
+            "games_pro": 6,
+            "games_contra": 2,
+            "pontos": 3
+        },
+        {
+            "nome": "e",
+            "jogos": 1,
+            "vitorias": 1,
+            "derrotas": 0,
+            "games_pro": 4,
+            "games_contra": 2,
+            "pontos": 3
+        },
+        {
+            "nome": "f",
+            "jogos": 1,
+            "vitorias": 1,
+            "derrotas": 0,
+            "games_pro": 4,
+            "games_contra": 2,
+            "pontos": 3
+        },
+        {
+            "nome": "g",
+            "jogos": 1,
+            "vitorias": 0,
+            "derrotas": 1,
+            "games_pro": 2,
+            "games_contra": 4,
+            "pontos": 0
+        },
+        {
+            "nome": "h",
+            "jogos": 1,
+            "vitorias": 0,
+            "derrotas": 1,
+            "games_pro": 2,
+            "games_contra": 4,
+            "pontos": 0
+        },
+        {
+            "nome": "c",
+            "jogos": 1,
+            "vitorias": 0,
+            "derrotas": 1,
+            "games_pro": 2,
+            "games_contra": 6,
+            "pontos": 0
+        },
+        {
+            "nome": "d",
+            "jogos": 1,
+            "vitorias": 0,
+            "derrotas": 1,
+            "games_pro": 2,
+            "games_contra": 6,
+            "pontos": 0
+        }
+    ],
+    "2": [
+        {
+            "nome": "a",
+            "jogos": 2,
+            "vitorias": 2,
+            "derrotas": 0,
+            "games_pro": 12,
+            "games_contra": 7,
+            "pontos": 6
+        },
+        {
+            "nome": "e",
+            "jogos": 2,
+            "vitorias": 2,
+            "derrotas": 0,
+            "games_pro": 10,
+            "games_contra": 4,
+            "pontos": 6
+        },
+        {
+            "nome": "b",
+            "jogos": 2,
+            "vitorias": 1,
+            "derrotas": 1,
+            "games_pro": 11,
+            "games_contra": 8,
+            "pontos": 3
+        },
+        {
+            "nome": "g",
+            "jogos": 2,
+            "vitorias": 1,
+            "derrotas": 1,
+            "games_pro": 8,
+            "games_contra": 6,
+            "pontos": 3
+        },
+        {
+            "nome": "c",
+            "jogos": 2,
+            "vitorias": 1,
+            "derrotas": 1,
+            "games_pro": 8,
+            "games_contra": 11,
+            "pontos": 3
+        },
+        {
+            "nome": "f",
+            "jogos": 2,
+            "vitorias": 1,
+            "derrotas": 1,
+            "games_pro": 6,
+            "games_contra": 8,
+            "pontos": 3
+        },
+        {
+            "nome": "d",
+            "jogos": 2,
+            "vitorias": 0,
+            "derrotas": 2,
+            "games_pro": 7,
+            "games_contra": 12,
+            "pontos": 0
+        },
+        {
+            "nome": "h",
+            "jogos": 2,
+            "vitorias": 0,
+            "derrotas": 2,
+            "games_pro": 4,
+            "games_contra": 10,
+            "pontos": 0
+        }
+    ],
+    "3": [
+        {
+            "nome": "e",
+            "jogos": 3,
+            "vitorias": 3,
+            "derrotas": 0,
+            "games_pro": 16,
+            "games_contra": 6,
+            "pontos": 9
+        },
+        {
+            "nome": "b",
+            "jogos": 3,
+            "vitorias": 2,
+            "derrotas": 1,
+            "games_pro": 17,
+            "games_contra": 12,
+            "pontos": 6
+        },
+        {
+            "nome": "a",
+            "jogos": 3,
+            "vitorias": 2,
+            "derrotas": 1,
+            "games_pro": 16,
+            "games_contra": 13,
+            "pontos": 6
+        },
+        {
+            "nome": "c",
+            "jogos": 3,
+            "vitorias": 2,
+            "derrotas": 1,
+            "games_pro": 14,
+            "games_contra": 15,
+            "pontos": 6
+        },
+        {
+            "nome": "g",
+            "jogos": 3,
+            "vitorias": 1,
+            "derrotas": 2,
+            "games_pro": 10,
+            "games_contra": 12,
+            "pontos": 3
+        },
+        {
+            "nome": "h",
+            "jogos": 3,
+            "vitorias": 1,
+            "derrotas": 2,
+            "games_pro": 10,
+            "games_contra": 12,
+            "pontos": 3
+        },
+        {
+            "nome": "f",
+            "jogos": 3,
+            "vitorias": 1,
+            "derrotas": 2,
+            "games_pro": 8,
+            "games_contra": 14,
+            "pontos": 3
+        },
+        {
+            "nome": "d",
+            "jogos": 3,
+            "vitorias": 0,
+            "derrotas": 3,
+            "games_pro": 11,
+            "games_contra": 18,
+            "pontos": 0
+        }
+    ]
+}
