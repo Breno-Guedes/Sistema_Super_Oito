@@ -9,10 +9,35 @@ foreach ($participantes as $p) {
 }
 
 $rodadaAtual = null;
-foreach ($rodadas as $r) {
+$rodadaAtualIndex = null;
+foreach ($rodadas as $index => $r) {
     if ($r['status'] === 'pendente') {
         $rodadaAtual = $r;
+        $rodadaAtualIndex = $index;
         break;
+    }
+}
+
+$editarRodada = isset($_GET['editar']) ? (int)$_GET['editar'] : null;
+$rodadaEmEdicao = false;
+$rodadaExibida = $rodadaAtual;
+$rodadaExibidaIndex = $rodadaAtualIndex;
+
+if ($editarRodada !== null) {
+    foreach ($rodadas as $index => $r) {
+        if ((int)$r['rodada'] === $editarRodada && $r['status'] === 'concluida') {
+            $rodadaExibida = $r;
+            $rodadaExibidaIndex = $index;
+            $rodadaEmEdicao = true;
+            break;
+        }
+    }
+}
+
+$rodadaAnteriorEditavel = null;
+foreach ($rodadas as $r) {
+    if ($r['status'] === 'concluida') {
+        $rodadaAnteriorEditavel = (int)$r['rodada'];
     }
 }
 
@@ -37,15 +62,26 @@ $rodadaConcluida = isset($_GET['rodada_concluida']) ? (int)$_GET['rodada_conclui
             </div>
         <?php endif; ?>
 
-        <?php if (!$rodadaAtual): ?>
+        <?php if ($rodadaAnteriorEditavel && (!$rodadaEmEdicao || $rodadaAnteriorEditavel !== (int)$rodadaExibida['rodada'])): ?>
+            <div class="barra-fluxo barra-fluxo-topo">
+                <a href="rodadas.php?editar=<?= $rodadaAnteriorEditavel ?>" class="btn btn-secundario">Editar Rodada Anterior</a>
+            </div>
+        <?php endif; ?>
+
+        <?php if (!$rodadaExibida): ?>
             <h2>Todas as rodadas foram conclu&iacute;das!</h2>
             <a href="../classificacao/classificacao.php" class="btn">Ver Classifica&ccedil;&atilde;o Final</a>
         <?php else: ?>
-            <h2>Rodada <?= $rodadaAtual['rodada'] ?> de 7</h2>
+            <h2><?= $rodadaEmEdicao ? 'Editando Rodada' : 'Rodada' ?> <?= $rodadaExibida['rodada'] ?> de 7</h2>
+            <?php if ($rodadaEmEdicao): ?>
+                <div class="barra-fluxo barra-fluxo-edicao">
+                    <a href="rodadas.php" class="btn btn-secundario">Voltar para Rodada Atual</a>
+                </div>
+            <?php endif; ?>
             <form onsubmit="enviarFormulario(event, 'salvar_placar.php')">
-                <input type="hidden" name="rodada_index" value="<?= $rodadaAtual['rodada'] - 1 ?>">
+                <input type="hidden" name="rodada_index" value="<?= $rodadaExibidaIndex ?>">
 
-                <?php foreach ($rodadaAtual['partidas'] as $index => $partida): ?>
+                <?php foreach ($rodadaExibida['partidas'] as $index => $partida): ?>
                     <div class="partida">
                         <h3>Quadra <?= $index + 1 ?></h3>
                         <p>
@@ -54,13 +90,13 @@ $rodadaConcluida = isset($_GET['rodada_concluida']) ? (int)$_GET['rodada_conclui
                             <?= $nomes[$partida['dupla_2'][0]] ?> / <?= $nomes[$partida['dupla_2'][1]] ?>
                         </p>
                         <div class="placar-inputs">
-                            <input type="number" name="p1_<?= $index ?>" min="0" required>
+                            <input type="number" name="p1_<?= $index ?>" min="0" value="<?= htmlspecialchars($partida['placar_1'], ENT_QUOTES, 'UTF-8') ?>" required>
                             <span>X</span>
-                            <input type="number" name="p2_<?= $index ?>" min="0" required>
+                            <input type="number" name="p2_<?= $index ?>" min="0" value="<?= htmlspecialchars($partida['placar_2'], ENT_QUOTES, 'UTF-8') ?>" required>
                         </div>
                     </div>
                 <?php endforeach; ?>
-                <button type="submit" class="btn">Salvar Rodada e Avan&ccedil;ar</button>
+                <button type="submit" class="btn"><?= $rodadaEmEdicao ? 'Salvar Corre&ccedil;&atilde;o' : 'Salvar Rodada e Avan&ccedil;ar' ?></button>
             </form>
         <?php endif; ?>
     </div>

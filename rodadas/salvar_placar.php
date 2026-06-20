@@ -7,6 +7,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $participantes = ler_json('../data/participantes.json');
     $index = (int)$_POST['rodada_index'];
 
+    if (!isset($rodadas[$index])) {
+        echo json_encode(['status' => 'erro', 'msg' => 'Rodada invalida.']);
+        exit;
+    }
+
     for ($i = 0; $i < 2; $i++) {
         $placar1 = isset($_POST["p1_$i"]) ? trim($_POST["p1_$i"]) : '';
         $placar2 = isset($_POST["p2_$i"]) ? trim($_POST["p2_$i"]) : '';

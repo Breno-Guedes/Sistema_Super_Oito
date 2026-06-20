@@ -24,14 +24,8 @@ function gerar_rotativas($jogadores) {
     return $rodadas;
 }
 
-function gerar_fixas($jogadores) {
+function gerar_fixas($duplas) {
     $rodadas = [];
-    $duplas = [
-        [$jogadores[0]['id'],$jogadores[1]['id']], 
-        [$jogadores[2]['id'],$jogadores[3]['id']], 
-        [$jogadores[4]['id'],$jogadores[5]['id']], 
-        [$jogadores[6]['id'],$jogadores[7]['id']]
-    ];
     $confrontos = [[0,1,2,3], [0,2,1,3], [0,3,1,2], [0,1,3,2], [0,2,3,1], [0,3,2,1], [0,1,2,3]];
     
     foreach ($confrontos as $i => $c) {

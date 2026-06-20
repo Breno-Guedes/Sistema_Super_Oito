@@ -182,6 +182,36 @@ form {
 	margin-bottom: 0;
 }
 
+.duplas-fixas-config {
+	display: none;
+	gap: 12px;
+	padding: 16px;
+	background: var(--surface-soft);
+	border: 1px solid var(--border);
+	border-radius: 12px;
+}
+
+.duplas-fixas-config > h3 {
+	color: var(--primary-dark);
+}
+
+.duplas-fixas-config > p {
+	margin-top: -6px;
+}
+
+.dupla-fixa {
+	display: grid;
+	gap: 10px;
+	padding: 14px;
+	background: #fff;
+	border: 1px solid var(--border);
+	border-radius: 10px;
+}
+
+.dupla-fixa h3 {
+	color: var(--text);
+}
+
 @media (min-width: 640px) {
 	.form-group {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -326,6 +356,14 @@ select:focus {
 	display: flex;
 	justify-content: flex-end;
 	margin-top: 18px;
+}
+
+.barra-fluxo-topo {
+	margin: 0 0 18px;
+}
+
+.barra-fluxo-edicao {
+	margin: -6px 0 16px;
 }
 
 table {

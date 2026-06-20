@@ -117,16 +117,16 @@ async function enviarFormulario(event, url) {
             return;
         }
 
-        await mostrarMensagem('Erro', json.msg || 'Nao foi possivel processar a solicitacao.');
+        await mostrarMensagem('Erro', json.msg || 'Não foi possível processar a solicitacao.');
     } catch (e) {
-        await mostrarMensagem('Erro', 'Nao foi possivel processar a requisicao.');
+        await mostrarMensagem('Erro', 'Não foi possível processar a requisicao.');
     }
 }
 
 async function zerarSistema() {
     const confirmou = await confirmarAcao(
-        'Confirmar acao',
-        'Tem certeza? Todos os dados serao apagados.',
+        'Confirmar ação',
+        'Tem certeza? Todos os dados serão apagados.',
         'Sim, zerar',
         'Cancelar'
     );
