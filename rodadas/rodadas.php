@@ -90,9 +90,9 @@ $rodadaConcluida = isset($_GET['rodada_concluida']) ? (int)$_GET['rodada_conclui
                             <?= $nomes[$partida['dupla_2'][0]] ?> / <?= $nomes[$partida['dupla_2'][1]] ?>
                         </p>
                         <div class="placar-inputs">
-                            <input type="number" name="p1_<?= $index ?>" min="0" value="<?= htmlspecialchars($partida['placar_1'], ENT_QUOTES, 'UTF-8') ?>" required>
+                            <input type="number" name="p1_<?= $index ?>" min="0" max="6" step="1" value="<?= htmlspecialchars($partida['placar_1'], ENT_QUOTES, 'UTF-8') ?>" required>
                             <span>X</span>
-                            <input type="number" name="p2_<?= $index ?>" min="0" value="<?= htmlspecialchars($partida['placar_2'], ENT_QUOTES, 'UTF-8') ?>" required>
+                            <input type="number" name="p2_<?= $index ?>" min="0" max="6" step="1" value="<?= htmlspecialchars($partida['placar_2'], ENT_QUOTES, 'UTF-8') ?>" required>
                         </div>
                     </div>
                 <?php endforeach; ?>

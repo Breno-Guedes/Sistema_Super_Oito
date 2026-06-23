@@ -94,12 +94,46 @@ async function enviarFormulario(event, url) {
     const form = event.target;
     const data = new FormData(form);
 
+    const nomes = [...form.querySelectorAll('input[name="nome[]"]')];
+    const nomesCadastrados = new Set();
+    for (const nomeInput of nomes) {
+        const nome = nomeInput.value.trim().replace(/\s+/g, ' ').toLocaleLowerCase('pt-BR');
+
+        if (!nome) {
+            await mostrarMensagem('Nome obrigatorio', 'Preencha o nome de todos os jogadores.');
+            nomeInput.focus();
+            return;
+        }
+
+        if (nomesCadastrados.has(nome)) {
+            await mostrarMensagem('Nome repetido', 'Não é permitido cadastrar jogadores com nomes idênticos.');
+            nomeInput.focus();
+            return;
+        }
+
+        nomesCadastrados.add(nome);
+    }
+
     const placares = [...form.querySelectorAll('input[name^="p1_"]')];
     for (const placar1 of placares) {
         const index = placar1.name.replace('p1_', '');
         const placar2 = form.querySelector(`[name="p2_${index}"]`);
+        if (!placar2) {
+            continue;
+        }
 
-        if (placar2 && Number(placar1.value) === Number(placar2.value)) {
+        const valor1 = Number(placar1.value);
+        const valor2 = Number(placar2.value);
+
+        if (
+            (!Number.isInteger(valor1) || !Number.isInteger(valor2) || valor1 < 0 || valor1 > 6 || valor2 < 0 || valor2 > 6)
+        ) {
+            await mostrarMensagem('Placar invalido', 'Informe placares inteiros entre 0 e 6.');
+            placar1.focus();
+            return;
+        }
+
+        if (valor1 === valor2) {
             await mostrarMensagem('Placar empatado', 'Informe um placar sem empate.');
             placar1.focus();
             return;

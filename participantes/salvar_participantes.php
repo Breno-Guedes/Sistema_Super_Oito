@@ -11,11 +11,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $participantes = [];
+    $nomesCadastrados = [];
     for ($i = 0; $i < 8; $i++) {
+        $nome = trim($nomes[$i]);
+        $apelido = trim($apelidos[$i]);
+        $nomeNormalizado = preg_replace('/\s+/', ' ', $nome);
+        $chaveNome = function_exists('mb_strtolower')
+            ? mb_strtolower($nomeNormalizado, 'UTF-8')
+            : strtolower($nomeNormalizado);
+
+        if ($nomeNormalizado === '') {
+            echo json_encode(['status' => 'erro', 'msg' => 'Preencha o nome de todos os jogadores.']);
+            exit;
+        }
+
+        if (isset($nomesCadastrados[$chaveNome])) {
+            echo json_encode(['status' => 'erro', 'msg' => 'Nao e permitido cadastrar jogadores com nomes identicos.']);
+            exit;
+        }
+
+        $nomesCadastrados[$chaveNome] = true;
         $participantes[] = [
             'id' => $i + 1,
-            'nome' => trim($nomes[$i]),
-            'apelido' => trim($apelidos[$i])
+            'nome' => $nomeNormalizado,
+            'apelido' => $apelido
         ];
     }
 
