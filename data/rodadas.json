@@ -1,7 +1,7 @@
 [
     {
         "rodada": 1,
-        "status": "concluida",
+        "status": "pendente",
         "partidas": [
             {
                 "dupla_1": [
@@ -12,8 +12,8 @@
                     3,
                     4
                 ],
-                "placar_1": 6,
-                "placar_2": 2
+                "placar_1": "",
+                "placar_2": ""
             },
             {
                 "dupla_1": [
@@ -24,8 +24,8 @@
                     7,
                     8
                 ],
-                "placar_1": 4,
-                "placar_2": 3
+                "placar_1": "",
+                "placar_2": ""
             }
         ],
         "formato": "rotativas"

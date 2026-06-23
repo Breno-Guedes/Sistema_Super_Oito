@@ -8,19 +8,36 @@ $participantes = ler_json('../data/participantes.json');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configura&ccedil;&atilde;o - Super 8</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.css?v=<?= filemtime('../css/style.css') ?>">
 </head>
 <body>
     <div class="container">
         <a href="../index.php" class="voltar">&larr; Voltar</a>
         <h2>Gerar Confrontos</h2>
         <form onsubmit="enviarFormulario(event, 'gerar_rodadas.php')">
-            <div class="form-group form-group-unico">
-                <select name="formato" id="formato" required>
-                    <option value="">Selecione o formato...</option>
-                    <option value="rotativas">Duplas Rotativas (Sorteio Inteligente)</option>
-                    <option value="fixas">Duplas Fixas (4 Duplas)</option>
-                </select>
+            <div class="formato-opcoes" role="radiogroup" aria-label="Formato das duplas">
+                <label class="formato-card">
+                    <input type="radio" name="formato" value="fixas" class="formato-radio" required>
+                    <span class="formato-card-conteudo">
+                        <span class="formato-card-topo">
+                            <span class="formato-card-icone">F</span>
+                            <span class="formato-card-status">Selecionar</span>
+                        </span>
+                        <span class="formato-card-titulo">Duplas Fixas</span>
+                        <span class="formato-card-descricao">Os jogadores permanecem com o mesmo parceiro.</span>
+                    </span>
+                </label>
+                <label class="formato-card">
+                    <input type="radio" name="formato" value="rotativas" class="formato-radio" required>
+                    <span class="formato-card-conteudo">
+                        <span class="formato-card-topo">
+                            <span class="formato-card-icone">R</span>
+                            <span class="formato-card-status">Selecionar</span>
+                        </span>
+                        <span class="formato-card-titulo">Duplas Rotativas</span>
+                        <span class="formato-card-descricao">Os parceiros mudam automaticamente ao longo das rodadas.</span>
+                    </span>
+                </label>
             </div>
             <div class="duplas-fixas-config" id="duplas-fixas-config">
                 <h3>Configurar Duplas Fixas</h3>
@@ -51,13 +68,18 @@ $participantes = ler_json('../data/participantes.json');
     </footer>
     <script src="../js/ui.js"></script>
     <script>
-        const formatoSelect = document.getElementById('formato');
+        const formatoRadios = [...document.querySelectorAll('input[name="formato"]')];
         const duplasFixasConfig = document.getElementById('duplas-fixas-config');
         const selectsDuplasFixas = [...document.querySelectorAll('.select-dupla-fixa')];
 
         function atualizarConfigDuplasFixas() {
-            const usarDuplasFixas = formatoSelect.value === 'fixas';
+            const formatoSelecionado = formatoRadios.find((radio) => radio.checked)?.value || '';
+            const usarDuplasFixas = formatoSelecionado === 'fixas';
             duplasFixasConfig.style.display = usarDuplasFixas ? 'grid' : 'none';
+            formatoRadios.forEach((radio) => {
+                const status = radio.closest('.formato-card').querySelector('.formato-card-status');
+                status.textContent = radio.checked ? 'Selecionado' : 'Selecionar';
+            });
             selectsDuplasFixas.forEach((select) => {
                 select.required = usarDuplasFixas;
                 if (!usarDuplasFixas) {
@@ -66,7 +88,9 @@ $participantes = ler_json('../data/participantes.json');
             });
         }
 
-        formatoSelect.addEventListener('change', atualizarConfigDuplasFixas);
+        formatoRadios.forEach((radio) => {
+            radio.addEventListener('change', atualizarConfigDuplasFixas);
+        });
         atualizarConfigDuplasFixas();
     </script>
 </body>
